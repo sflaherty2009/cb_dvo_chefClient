@@ -16,5 +16,5 @@
 # There is a recipe to do this at the above URL.
 # Or, on Windows, just set chef-client as a scheduled windows task...
 
-default['chef_client']['interval'] = '1800'
-default['chef_client']['splay'] = '300'
+default['chef_client']['interval'] = '180'
+default['chef_client']['splay'] = '30'
