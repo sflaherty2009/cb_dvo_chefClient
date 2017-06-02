@@ -4,5 +4,12 @@
 #
 # Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
 
-include_recipe 'chef-client::default'
-include_recipe 'chef-client::delete_validation'
+case node['os']
+when 'linux'
+  include_recipe 'chef-client::default'
+  include_recipe 'chef-client::delete_validation'
+when 'windows'
+  raise 'no Windows support'
+else
+  raise "no #{node['os']} support"
+end

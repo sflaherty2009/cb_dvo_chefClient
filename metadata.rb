@@ -6,7 +6,7 @@ source_url 'https://bitbucket.org/trekbikes/cb_dvo_chefclient/src'
 issues_url 'https://bitbucket.org/trekbikes/cb_dvo_chefclient/issues'
 description 'Sets interval, splay and removes the Chef Validator'
 long_description 'Sets interval, splay and removes the Chef Validator'
-version '0.1.1'
+version '0.1.2'
 
 # If you upload to Supermarket you should set this so your cookbook
 # gets a `View Issues` link
