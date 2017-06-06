@@ -1,3 +1,8 @@
+# 1.0.1
+Date: 6/6/2017
+
+* Fixed a logic typo.
+
 # 1.0.0
 Date: 6/6/2017
 

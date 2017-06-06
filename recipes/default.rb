@@ -8,7 +8,7 @@ case node['os']
 when 'linux'
   include_recipe 'chef-client::default'
   include_recipe 'chef-client::delete_validation'
-when 'windows'
+when 'Windows'
   raise 'no Windows support'
 else
   raise "no #{node['os']} support"
