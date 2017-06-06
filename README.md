@@ -27,10 +27,15 @@ No platform-specific dependencies.
 
 ## Attributes
 
-* `node['chef_client']['interval']` - Sets the frequency at which chef-client checks back into the Chef Server.  
+### Linux
+* `node['chef_client']['interval']` - Sets the frequency at which chef-client is run ***on Linux*** *in seconds*.  
   * **Value: 1800.**  
-* `node['chef_client']['splay']` - Sets the frequency offset so that all machines provisioned at the same time don't check in all at once.  
+* `node['chef_client']['splay']` - Sets the frequency offset *in seconds* **on linux** so that all machines provisioned at the same time don't check in all at once.
   * **Value: 300.**  
+
+### Windows
+* `node['chef_client']['task']['frequency_modifier']` - Sets the frequency chef-client is run ***on Windows*** *in minutes*.
+  * **Value: 30.**  
 
 ## Platform-Specific Documentation
 
