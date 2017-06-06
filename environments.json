@@ -1,7 +1,7 @@
 {
   "cb_dvo_chefClient": {
       "production": "1.0.2",
-      "staging": "1.0.2",
+      "staging": "",
       "testing": "1.0.2",
       "development": "1.0.2"
   }
