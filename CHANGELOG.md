@@ -1,4 +1,4 @@
-# 1.0.1
+# 1.0.1 - 1.0.2
 Date: 6/6/2017
 
 * Fixed a logic typo.
