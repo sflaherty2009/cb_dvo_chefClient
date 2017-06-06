@@ -16,9 +16,9 @@
 # There is a recipe to do this at the above URL.
 # Or, on Windows, just set chef-client as a scheduled windows task...
 
-# Linux
+# Linux, in seconds
 default['chef_client']['interval'] = 1800
 default['chef_client']['splay'] = 300
 
-# Windows
-default['chef_client']['task']['frequency_modifier'] = 3
+# Windows, in minutes
+default['chef_client']['task']['frequency_modifier'] = 30

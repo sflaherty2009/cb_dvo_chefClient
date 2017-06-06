@@ -1,7 +1,7 @@
-# 1.0.1 - 1.0.2
+# 1.0.1 - 1.0.6
 Date: 6/6/2017
 
-* Fixed a logic typo.
+* Fixed a logic typo & tweaks trying to get attributes set correctly on Windows and Linux.
 
 # 1.0.0
 Date: 6/6/2017
