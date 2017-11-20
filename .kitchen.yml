@@ -13,8 +13,16 @@ verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.2
+  - name: centos-7.4
+    transport:
+      name: ssh
+      username: vagrant
+      password: vagrant
+    driver:
+      box: bento/centos-7.4
+      memory: 1024
+      cpus: 1
+    attributes:
 
 suites:
   - name: default
@@ -24,3 +32,12 @@ suites:
       inspec_tests:
         - test/recipes
     attributes:
+      dvo_user:
+        use: "linux"
+        ALM_environment: "local"
+      dvo:
+        cloud_service_provider:
+          name: "local"        
+    driver:
+      network:
+        - ['private_network', {ip: '192.168.57.10'}]
