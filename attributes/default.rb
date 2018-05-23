@@ -17,7 +17,7 @@
 # Or, on Windows, just set chef-client as a scheduled windows task...
 
 # Disabling Plugins to help avoid 413 Errors
-default['ohai']['disabled_plugins'] = ":Passwd"
+default['ohai']['disabled_plugins'] = ':Passwd'
 
 # Linux, in seconds
 default['chef_client']['interval'] = 1800
