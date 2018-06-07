@@ -5,5 +5,5 @@
 # Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
 
 service 'chef-client' do
-  action [ :stop, :disable ]
+  action [:stop, :disable]
 end
