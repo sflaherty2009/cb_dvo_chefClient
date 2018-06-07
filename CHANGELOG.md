@@ -1,3 +1,8 @@
+# 1.1.1
+Date: 6/7/2018
+
+* Added a recipe to disable the chef-client service.
+
 # 1.0.1 - 1.0.6
 Date: 6/6/2017
 
