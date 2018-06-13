@@ -4,22 +4,20 @@ driver:
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  require_chef_omnibus: 13.8.5
   always_update_cookbooks: true
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-7.4
+  - name: centos-7.3
     transport:
       name: ssh
       username: vagrant
       password: vagrant
     driver:
-      box: bento/centos-7.4
+      box: bento/centos-7.3
       memory: 1024
       cpus: 1
     attributes:
@@ -31,13 +29,7 @@ suites:
     verifier:
       inspec_tests:
         - test/recipes
-    attributes:
-      dvo_user:
-        use: "linux"
-        ALM_environment: "local"
-      dvo:
-        cloud_service_provider:
-          name: "local"        
+    attributes:  
     driver:
       network:
         - ['private_network', {ip: '192.168.57.10'}]
