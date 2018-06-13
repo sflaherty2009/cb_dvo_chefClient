@@ -1,1 +1,1 @@
-default['chef_client']['log_dir'] = "/standard/sumologs/chef"
+default['chef_client']['log_dir'] = '/standard/sumologs/chef'
