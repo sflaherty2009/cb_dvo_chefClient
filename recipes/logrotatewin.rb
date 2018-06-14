@@ -42,6 +42,12 @@ conf_plain_file 'C:\\chef\\client.rb' do
   only_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'chef.log\')'
 end
 
+directory 'S:\\Logs'
+
+file 'S:\\Logs\\chef.log' do
+  :create_if_missing
+end
+
 windows_logrotate 'chef' do
   username task_user
   password task_password
