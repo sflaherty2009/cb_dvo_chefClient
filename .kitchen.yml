@@ -3,7 +3,7 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero
+  name: chef_solo
   require_chef_omnibus: 13.8.5
   always_update_cookbooks: true
 
@@ -20,12 +20,48 @@ platforms:
       box: bento/centos-7.3
       memory: 1024
       cpus: 1
-    attributes:
+
+  - name: azwin
+    transport:
+      name: winrm
+      username: vagrant
+      password: vagrant
+    driver:
+      name: azurerm
+    driver_config:
+      subscription_id: '9db13c96-62ad-4945-9579-74aeed296e48'
+      location: East US 2
+      machine_size: Standard_D4s_v3
+      image_urn: MicrosoftSQLServer:SQL2016SP1-WS2016:SQLDEV:latest
+      data_disks:
+        - lun: 0
+          disk_size_gb: 979
+      vnet_id: /subscriptions/9db13c96-62ad-4945-9579-74aeed296e48/resourceGroups/AZ-RG-Network/providers/Microsoft.Network/virtualNetworks/AZ-VN-EastUS2-01
+      subnet_id: AZ-SN-back
+      vm_name: azw-kit-sql-01
+
+  - name: trek/Windows2016
+    os_type: windows
+    shell_type: powershell
+    communicator: winrm
+    transport:
+      name: winrm
+      username: vagrant
+      password: vagrant
+    driver:
+      name: vagrant
+      box: trek/Windows2016
+      box_url: https://aztrksaslh00public01.blob.core.windows.net/vagrant/windows/2016/windows2016min-virtualbox.box
+      network:
+        - ['private_network', {ip: '192.168.57.11'}]
 
 suites:
   - name: default
     run_list:
+      - recipe[cb_dvo_addStorage::default]
       - recipe[cb_dvo_chefClient::default]
+    data_bags_path: "test/integration/default/data_bags"
+    encrypted_data_bag_secret_key_path: "test/integration/default/hybDatabase_secret"
     verifier:
       inspec_tests:
         - test/recipes
