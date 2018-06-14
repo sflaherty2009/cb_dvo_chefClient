@@ -36,7 +36,7 @@ end
 
 conf_plain_file 'C:\\chef\\client.rb' do
   pattern %r{log_location}
-  new_line 'log_location       \'S:\\Log\\chef.log\''
+  new_line 'log_location       \'S:\\Logs\\chef.log\''
   action :insert_if_no_match
   guard_interpreter :powershell_script
   only_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'chef.log\')'
