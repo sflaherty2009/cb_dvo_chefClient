@@ -1,66 +1,48 @@
-# cb_dvo_chefClient
+# cb_dvo_chefclient
 
-This Cookbook:
-* Deletes the Chef validation certificate
-* Updates the converge interval (set in an attribute)
-* Updates the converge splay (set in an attribute)
+This cookbook removes the validation key from servers after they've been registered with the chef server. It also sets up a log rotation schedule for chef logs for both Windows and Linux systems.
 
-## Supported Platforms
+## Requirements
 
-**Officially supported platforms:**
+### Platforms
 
-* CentOS 7.2 & 7.3 - Sets chef-client up as a systemd service
-* Windows 2012 R2 - Sets up chef-client as a scheduled Windows Task
+- CentOS 7.4
+- CentOS 7.3
+- Windows Server 2016
 
-**Also know/is likely to work on:**
+### Chef
 
-* NA
+- Chef 13.8.5+
 
-## Dependencies
-This Cookbook is dependant upon the chef-client Cookbook available on the Chef Supermarket.
+### Cookbooks (Dependencies)
 
-### Windows
-No platform-specific dependencies.
-
-### Linux
-No platform-specific dependencies.
+- chef-client ~> 10.0.5
+- windows_logrotate ~> 0.2.2
+- cb_dvo_addStorage
+- conf ~> 0.1.0
 
 ## Attributes
 
-### Linux
-* `node['chef_client']['interval']` - Sets the frequency at which chef-client is run ***on Linux*** *in seconds*.  
-  * **Value: 1800.**  
-* `node['chef_client']['splay']` - Sets the frequency offset *in seconds* **on linux** so that all machines provisioned at the same time don't check in all at once.
-  * **Value: 300.**  
+- node['chef_client']['log_dir'] - set the log directory for linux
+- node['chef_client']['windows']['log_dir'] - set the log directory for windows
+- node['chef_client']['windows']['log_file'] - set the log filename for windows
+- node['chef_client']['windows']['frequency'] - set the rotation frequency for windows
+- node['chef_client']['windows']['rotate'] - set the amount of logfiles to keep
 
-### Windows
-* `node['chef_client']['task']['frequency_modifier']` - Sets the frequency chef-client is run ***on Windows*** *in minutes*.
-  * **Value: 30.**  
+## Recipes
 
-## Platform-Specific Documentation
+### default.rb
 
-### Windows
-* Sets chef-client up as a scheduled Windows task.
+Runs the config and delete_validation recipes from the chef-client community cookbook for Linux. Runs the delete_validation recipe from the chef-client community cookbook, windows_logrotate community cookbook and logrotatewin recipe for Windows.
 
-### Linux
-* Sets chef-client up as a systemd service.
+### disable.rb
 
-## Usage
+Disables the chef-client service
 
-### cb_dvo_chefClient::default
+### logrotatewin.br
 
-If you are using the orchestrator, there is no need to include cb_dvo_chefClient in the run_list; it's included by default.  Neither the interval or splay can be altered by end users.
+Completes setup for client.rb to our specifications and sets the chef-client logging directory based on attributes above for Windows servers. It also sets up a log rotation for chef-client based on attributes above.
 
-## Upgrade/Roll-back considerations
+## License
 
-### Windows
-
-None.
-
-### Linux 
-
-None.
-
-## License and Authors
-
-Author:: Ray Crawford (Ray_Crawford@trekbikes.com) -- Copyright 2017.
+**Copyright:** 2018 Trek Bicycles

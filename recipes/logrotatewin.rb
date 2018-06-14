@@ -13,38 +13,38 @@ else
   task_password = local_admin['password']
 end
 
-conf_plain_file 'C:\\chef\\client.rb' do
+conf_plain_file "#{node['chef_client']['windows']['conf_dir']}\\client.rb" do
   pattern %r{azure}
   action :remove
   guard_interpreter :powershell_script
-  not_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'azure\')'
+  not_if "!(Select-String -Path '#{node['chef_client']['windows']['conf_dir']}\\client.rb' -Pattern \'azure\')"
 end
 
-conf_plain_file 'C:\\chef\\client.rb' do
+conf_plain_file "#{node['chef_client']['windows']['conf_dir']}\\client.rb" do
   pattern %r{Azure}
   action :remove
   guard_interpreter :powershell_script
-  not_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'Azure\')'
+  not_if "!(Select-String -Path '#{node['chef_client']['windows']['conf_dir']}\\client.rb' -Pattern \'Azure\')"
 end
 
-conf_plain_file 'C:\\chef\\client.rb' do
+conf_plain_file "#{node['chef_client']['windows']['conf_dir']}\\client.rb" do
   pattern %r{#}
   action :remove
   guard_interpreter :powershell_script
-  not_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'#\')'
+  not_if "!(Select-String -Path '#{node['chef_client']['windows']['conf_dir']}\\client.rb' -Pattern \'#\')"
 end
 
-conf_plain_file 'C:\\chef\\client.rb' do
+conf_plain_file "#{node['chef_client']['windows']['conf_dir']}\\client.rb" do
   pattern %r{log_location}
-  new_line 'log_location       \'S:\\Logs\\chef.log\''
+  new_line "log_location       '#{node['chef_client']['windows']['log_dir']}\\#{node['chef_client']['windows']['log_file']}'"
   action :insert_if_no_match
   guard_interpreter :powershell_script
-  only_if '!(Select-String -Path \'C:\\chef\\client.rb\' -Pattern \'chef.log\')'
+  only_if "!(Select-String -Path '#{node['chef_client']['windows']['conf_dir']}\\client.rb' -Pattern '#{node['chef_client']['windows']['log_file']}')"
 end
 
-directory 'S:\\Logs'
+directory node['chef_client']['windows']['log_dir']
 
-file 'S:\\Logs\\chef.log' do
+file "#{node['chef_client']['windows']['log_dir']}\\#{node['chef_client']['windows']['log_file']}" do
   :create_if_missing
 end
 
@@ -54,9 +54,9 @@ windows_logrotate 'chef' do
   run_immediately true
   confidential false
   conf <<-EOF
-S:\\Logs\\chef.log {
-    weekly
-    rotate 12
+#{node['chef_client']['windows']['log_dir']}\\#{node['chef_client']['windows']['log_file']} {
+    #{node['chef_client']['windows']['frequency']}
+    rotate #{node['chef_client']['windows']['rotate']}
     compress
     endscript
 }
