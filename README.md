@@ -2,6 +2,22 @@
 
 This cookbook removes the validation key from servers after they've been registered with the chef server. It also sets up a log rotation schedule for chef logs for both Windows and Linux systems.
 
+## Current Logging Standards
+
+### Linux
+
+- Log name: client.log ( set with `default['chef_client']['log_file']` )
+- Log location: /standard/sumologs/chef ( set with `default['chef_client']['log_dir']` )
+- Rotate: 12 ( set with `default['chef_client']['logrotate']['rotate']` )
+- Frequency: Weekly ( set with `default['chef_client']['logrotate']['frequency']` )
+
+### Windows 
+
+- Log name: chef.log ( set with `default['chef_client']['windows']['log_file']` )
+- Log location: S:\Logs\ ( set with `default['chef_client']['windows']['log_dir']` )
+- Rotate: 12 ( set with `default['chef_client']['windows']['rotate']` )
+- Frequency: Weekly ( set with `default['chef_client']['windows']['frequency']` )
+
 ## Requirements
 
 ### Platforms
@@ -28,6 +44,8 @@ This cookbook removes the validation key from servers after they've been registe
 - node['chef_client']['windows']['log_file'] - set the log filename for windows
 - node['chef_client']['windows']['frequency'] - set the rotation frequency for windows
 - node['chef_client']['windows']['rotate'] - set the amount of logfiles to keep
+- node['chef_client']['config'] - sets the default client.rb and can be used to update or add ANY accepted attributes in client.rb
+  - example: default['chef_client']['config']['ssl_verify_mode'] can be used to update the verify mode used by chef in client.rb
 
 ## Recipes
 

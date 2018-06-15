@@ -1,12 +1,18 @@
-default['chef_client']['log_dir'] = '/standard/sumologs/chef'
+default['chef_client']['config'] = {
+  'ssl_verify_mode' => ':verify_none',
+  'chef_server_url' => Chef::Config[:chef_server_url],
+  'validation_client_name' => Chef::Config[:validation_client_name],
+  'validation_key' => '/etc/chef/validation.pem',
+  'client_key' => '/etc/chef/client.pem',
+  'node_name' => Chef::Config[:node_name],
+  'encrypted_data_bag_secret' => '/etc/chef/encrypted_data_bag_secret',
+  'trusted_certs_dir' => '/etc/chef/trusted_certs',
+}
 default['ohai']['disabled_plugins'] = [':sessions', ':passwd']
-default['chef_client']['config']['client_key'] = '/etc/chef/client.pem'
-default['chef_client']['config']['validation_key'] = '/etc/chef/validation.pem'
-default['chef_client']['config']['ssl_verify_mode'] = ':verify_none'
-default['chef_client']['config']['encrypted_data_bag_secret'] = '/etc/chef/encrypted_data_bag_secret'
-default['chef_client']['config']['trusted_certs_dir'] = '/etc/chef/trusted_certs'
-default['chef_client']['config']['verify_api_cert'] = false
-default['chef_client']['windows']['conf_dir'] = 'C:\\chef'
+default['chef_client']['config']['start_handlers'] = []
+default['chef_client']['config']['report_handlers'] = []
+default['chef_client']['config']['exception_handlers'] = []
+default['chef_client']['log_dir'] = '/standard/sumologs/chef'
 default['chef_client']['windows']['log_dir'] = 'S:\\Logs'
 default['chef_client']['windows']['log_file'] = 'chef.log'
 default['chef_client']['windows']['frequency'] = 'weekly'
