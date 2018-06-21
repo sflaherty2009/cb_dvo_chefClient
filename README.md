@@ -57,7 +57,7 @@ Runs the config and delete_validation recipes from the chef-client community coo
 
 Disables the chef-client service
 
-### logrotatewin.br
+### logrotatewin.rb
 
 Completes setup for client.rb to our specifications and sets the chef-client logging directory based on attributes above for Windows servers. It also sets up a log rotation for chef-client based on attributes above.
 
