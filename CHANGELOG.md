@@ -6,9 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+## [1.2.9] - 2018-10-23
+
+### Added
+
+- Updated cb_dvo_addStorage dependency.
+
 ## [1.2.8] - 2018-10-23
 
 ### Added
 
 - This changelog file.
-
