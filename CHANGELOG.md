@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
-## [1.2.9] - 2018-10-23
+## [1.2.9] - 2018-11-5
 
 ### Added
 
