@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: cb_dvo_chefClient
+# Cookbook Name:: cb_dvo_chefclient
 # Recipe:: windows
 #
 # Copyright (c) 2017 Trek Bicycles, All Rights Reserved.

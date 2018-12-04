@@ -1,4 +1,4 @@
-# Changelog - cb_dvo_chefClient
+# Changelog - cb_dvo_chefclient
 
 All notable changes to this project will be documented in this file.
 

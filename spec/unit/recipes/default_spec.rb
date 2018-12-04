@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: cb_dvo_chefClient
+# Cookbook Name:: cb_dvo_chefclient
 # Spec:: default
 #
 # Copyright (c) 2017 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'cb_dvo_chefClient::default' do
+describe 'cb_dvo_chefclient::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new
