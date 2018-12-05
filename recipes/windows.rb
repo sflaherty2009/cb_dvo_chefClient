@@ -4,7 +4,9 @@
 #
 # Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
 
-local_admin = ChefVault::Item.load('credentials', 'local_admin')
+include_recipe 'chef-vault'
+
+local_admin = chef_vault_item('credentials', 'local_admin')
 if node['hostname'].include?('kit')
   task_user = 'azure'
   task_password = 'P2ssw0rd'
