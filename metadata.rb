@@ -6,7 +6,7 @@ source_url 'https://bitbucket.org/trekbikes/cb_dvo_chefclient/src'
 issues_url 'https://bitbucket.org/trekbikes/cb_dvo_chefclient/issues'
 description 'Sets Chef logrotation and deletes validation key'
 long_description 'See: https://bitbucket.org/trekbikes/cb_dvo_chefclient'
-version '1.2.10'
+version '1.2.11'
 
 chef_version '>= 12.1' if respond_to?(:chef_version)
 

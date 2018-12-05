@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
 
-local_admin = data_bag_item('hybDatabase', 'local_admin')
+local_admin = ChefVault::Item.load('credentials', 'local_admin')
 if node['hostname'].include?('kit')
   task_user = 'azure'
   task_password = 'P2ssw0rd'
