@@ -1,0 +1,1 @@
+default['chef']['vault'] = { 'credentials' => 'local_admin' }
