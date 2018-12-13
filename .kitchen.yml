@@ -4,20 +4,19 @@ driver:
 
 provisioner:
   name: chef_solo
-  require_chef_omnibus: 13.8.5
   always_update_cookbooks: true
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-7.3
+  - name: centos-7.4
     transport:
       name: ssh
       username: vagrant
       password: vagrant
     driver:
-      box: bento/centos-7.3
+      box: bento/centos-7.4
       memory: 1024
       cpus: 1
 
@@ -58,10 +57,7 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[cb_dvo_addStorage::default]
       - recipe[cb_dvo_chefclient::default]
-    data_bags_path: "test/integration/default/data_bags"
-    encrypted_data_bag_secret_key_path: "test/integration/default/hybDatabase_secret"
     verifier:
       inspec_tests:
         - test/recipes

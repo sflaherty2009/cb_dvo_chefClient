@@ -6,13 +6,13 @@
 
 include_recipe 'chef-vault'
 
-local_admin = chef_vault_item('credentials', 'local_admin')
+creds = chef_vault_item('infrastructure-vaults', 'credentials')
 if node['hostname'].include?('kit')
   task_user = 'azure'
-  task_password = 'P2ssw0rd'
+  task_password = creds['azure_kitchen']['windows_password']
 else
   task_user = 'local_admin'
-  task_password = local_admin['password']
+  task_password = creds['local_admin']['password']
 end
 
 chef_client_scheduled_task 'chef-client' do

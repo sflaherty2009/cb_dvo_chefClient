@@ -1,1 +1,1 @@
-default['chef']['vault'] = { 'credentials' => 'local_admin' }
+default['chef']['vault'] = { 'infrastructure-vaults' => 'credentials' }
