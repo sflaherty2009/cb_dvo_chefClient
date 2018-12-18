@@ -3,24 +3,55 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
-  always_update_cookbooks: true
+  name: chef_zero
+  client_rb:
+    environment: test-kitchen
+    node_name: "<%= ENV['USER'] %>"
+    client_key: "/tmp/kitchen/data/<%= ENV['USER'] %>.pem"
 
 verifier:
   name: inspec
 
 platforms:
-  - name: centos-7.4
+  - name: centos-7.4-local
     transport:
-      name: ssh
-      username: vagrant
-      password: vagrant
+      ssh_key: ~/.ssh/id_rsa
     driver:
       box: bento/centos-7.4
-      memory: 1024
-      cpus: 1
+      customize:
+        createhd:
+          - filename: disk1.vdi
+            size: 1002496
+        storageattach:
+          - storagectl: SATA Controller
+            port: 1
+            device: 0
+            type: hdd
+            medium: disk1.vdi
+      network:
+        - ['private_network', {ip: '192.168.56.15'}]
+    
+  - name: centos-7.4-azure
+    transport:
+      ssh_key: ~/.ssh/id_rsa
+    driver:
+      name: azurerm
+    driver_config:
+      subscription_id: 9db13c96-62ad-4945-9579-74aeed296e48
+      location: East US 2
+      machine_size: Standard_DS1_v2
+      image_urn: OpenLogic:CentOS:7.4:latest
+      vnet_id: /subscriptions/9db13c96-62ad-4945-9579-74aeed296e48/resourceGroups/AZ-RG-Network/providers/Microsoft.Network/virtualNetworks/AZ-VN-EastUS2-01
+      subnet_id: AZ-SN-back
+      vm_name: azl-kit-cc-01
+      data_disks:
+        - lun: 0
+          disk_size_gb: 979
 
-  - name: azwin
+  - name: win16-az
+    provisioner:
+      client_rb:
+        client_key: "C:\\Users\\azure\\AppData\\Local\\Temp\\kitchen\\data\\<%= ENV['USER'] %>.pem"
     transport:
       name: winrm
       username: vagrant
@@ -28,18 +59,21 @@ platforms:
     driver:
       name: azurerm
     driver_config:
-      subscription_id: '9db13c96-62ad-4945-9579-74aeed296e48'
+      subscription_id: 9db13c96-62ad-4945-9579-74aeed296e48
       location: East US 2
-      machine_size: Standard_D4s_v3
-      image_urn: MicrosoftSQLServer:SQL2016SP1-WS2016:SQLDEV:latest
+      machine_size: Standard_DS1_v2
+      image_urn: MicrosoftWindowsServer:WindowsServer:2016-Datacenter:latest
       data_disks:
         - lun: 0
           disk_size_gb: 979
       vnet_id: /subscriptions/9db13c96-62ad-4945-9579-74aeed296e48/resourceGroups/AZ-RG-Network/providers/Microsoft.Network/virtualNetworks/AZ-VN-EastUS2-01
       subnet_id: AZ-SN-back
-      vm_name: azw-kit-sql-01
+      vm_name: azw-kit-cc-01
 
-  - name: trek/Windows2016
+  - name: win16-local
+    provisioner:
+      client_rb:
+        client_key: "C:\\Users\\vagrant\\AppData\\Local\\Temp\\kitchen\\data\\<%= ENV['USER'] %>.pem"
     os_type: windows
     shell_type: powershell
     communicator: winrm
@@ -51,17 +85,27 @@ platforms:
       name: vagrant
       box: trek/Windows2016
       box_url: https://aztrksaslh00public01.blob.core.windows.net/vagrant/windows/2016/windows2016min-virtualbox.box
+      customize:
+        createhd:
+          - filename: disk1.vdi
+            size: 1002496
+        storageattach:
+          - storagectl: SATA Controller
+            port: 1
+            device: 0
+            type: hdd
+            medium: disk1.vdi
       network:
         - ['private_network', {ip: '192.168.57.11'}]
 
 suites:
   - name: default
     run_list:
+      - recipe[cb_dvo_addstorage::default]
       - recipe[cb_dvo_chefclient::default]
+    data_bags_path: test/integration/data_bags
+    environments_path: test/integration/environments
+    data_path: "/Users/<%= ENV['USER'] %>/.chef/kitchen"
     verifier:
       inspec_tests:
         - test/recipes
-    attributes:  
-    driver:
-      network:
-        - ['private_network', {ip: '192.168.57.10'}]

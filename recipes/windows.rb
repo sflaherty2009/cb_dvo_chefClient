@@ -7,7 +7,8 @@
 include_recipe 'chef-vault'
 
 creds = chef_vault_item('infrastructure-vaults', 'credentials')
-if node['hostname'].include?('kit')
+
+if node.chef_environment == 'test-kitchen'
   task_user = 'azure'
   task_password = creds['azure_kitchen']['windows_password']
 else
