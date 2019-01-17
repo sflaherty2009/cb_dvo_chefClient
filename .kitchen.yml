@@ -7,7 +7,7 @@ provisioner:
   client_rb:
     environment: test-kitchen
     node_name: "<%= ENV['USER'] %>"
-    client_key: "/tmp/kitchen/data/<%= ENV['USER'] %>.pem"
+    client_key: "#{ENV['TEMP'] ? ENV['TEMP'] : '/tmp'}/kitchen/data/<%= ENV['USER'] %>.pem"
 
 verifier:
   name: inspec
@@ -49,9 +49,6 @@ platforms:
           disk_size_gb: 979
 
   - name: win16-az
-    provisioner:
-      client_rb:
-        client_key: "C:\\Users\\azure\\AppData\\Local\\Temp\\kitchen\\data\\<%= ENV['USER'] %>.pem"
     transport:
       name: winrm
       username: vagrant
@@ -71,9 +68,6 @@ platforms:
       vm_name: azw-kit-cc-01
 
   - name: win16-local
-    provisioner:
-      client_rb:
-        client_key: "C:\\Users\\vagrant\\AppData\\Local\\Temp\\kitchen\\data\\<%= ENV['USER'] %>.pem"
     os_type: windows
     shell_type: powershell
     communicator: winrm
@@ -90,7 +84,7 @@ platforms:
           - filename: disk1.vdi
             size: 1002496
         storageattach:
-          - storagectl: SATA Controller
+          - storagectl: IDE Controller
             port: 1
             device: 0
             type: hdd
