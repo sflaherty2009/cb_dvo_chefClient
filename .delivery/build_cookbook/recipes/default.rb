@@ -4,4 +4,4 @@
 #
 # Copyright (c) 2017 The Authors, All Rights Reserved.
 include_recipe 'delivery-truck::default'
-include_recipe 'cb_dvo_terraform::install'
+include_recipe 'cb_infra_acceptance::install'
