@@ -6,7 +6,7 @@
 
 case node['os']
 when 'linux'
-  include_recipe 'chef-client::cron' unless %w(development testing staging production).include?(node.chef_environment)
+  include_recipe 'chef-client::cron' if %w(development testing staging production).include?(node.chef_environment)
   include_recipe 'chef-client::config'
   include_recipe 'chef-client::delete_validation'
   include_recipe 'chef_client_updater::default'

@@ -2,9 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.2.19] - 2019-01-17
 
 ### Changed
+
+- Fixed chef-client cron job to run in necessary environments.
 
 ## [1.2.18] - 2019-01-17
 
