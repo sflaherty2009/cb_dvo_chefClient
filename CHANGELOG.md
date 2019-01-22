@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.20] - 2019-01-22
+
+### Changed
+
+- Updated chef-client cookbook.
+
 ## [1.2.19] - 2019-01-17
 
 ### Changed
