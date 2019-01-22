@@ -4,6 +4,9 @@ driver:
 
 provisioner:
   name: chef_zero
+  product_name: chef
+  product_version: 14
+  install_strategy: always
   client_rb:
     environment: test-kitchen
     node_name: "<%= ENV['USER'] %>"
@@ -75,6 +78,11 @@ platforms:
       name: winrm
       username: vagrant
       password: vagrant
+    provisioner:
+      client_rb:
+        environment: local-kitchen
+    node_name: "<%= ENV['USER'] %>"
+    client_key: "#{ENV['TEMP'] ? ENV['TEMP'] : '/tmp'}/kitchen/data/<%= ENV['USER'] %>.pem"
     driver:
       name: vagrant
       box: trek/Windows2016

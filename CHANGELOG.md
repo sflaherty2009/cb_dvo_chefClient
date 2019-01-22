@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.21] - 2019-01-22
+
+### Changed
+
+- Adjusted default cookbook to only run the windows scheduled task in appropriate environments.
+- Fixed windows logging directory.
+- Fixed windows chef-client update process.
+
 ## [1.2.20] - 2019-01-22
 
 ### Changed

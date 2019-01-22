@@ -11,6 +11,9 @@ creds = chef_vault_item('infrastructure-vaults', 'credentials')
 if node.chef_environment == 'test-kitchen'
   task_user = 'azure'
   task_password = creds['azure_kitchen']['windows_password']
+elsif node.chef_environment == 'local-kitchen'
+  task_user = 'Administrator'
+  task_password = creds['local_kitchen']['windows_password']
 else
   task_user = 'local_admin'
   task_password = creds['local_admin']['password']

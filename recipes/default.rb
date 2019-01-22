@@ -11,7 +11,7 @@ when 'linux'
   include_recipe 'chef-client::delete_validation'
   include_recipe 'chef_client_updater::default'
 when 'windows'
-  include_recipe 'cb_dvo_chefclient::windows'
+  include_recipe 'cb_dvo_chefclient::windows' if %w(development testing staging production).include?(node.chef_environment)
   include_recipe 'windows_logrotate::default'
   include_recipe 'chef-client::delete_validation'
   include_recipe 'cb_dvo_chefclient::logrotatewin'
