@@ -7,7 +7,7 @@ This cookbook removes the validation key from servers after they've been registe
 ### Linux
 
 - Log name: client.log ( set with `default['chef_client']['log_file']` )
-- Log location: /standard/sumologs/chef ( set with `default['chef_client']['log_dir']` )
+- Log location: /standard/log/chef ( set with `default['chef_client']['log_dir']` )
 - Rotate: 12 ( set with `default['chef_client']['logrotate']['rotate']` )
 - Frequency: Weekly ( set with `default['chef_client']['logrotate']['frequency']` )
 
