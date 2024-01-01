@@ -1,5 +1,5 @@
 # License - cb_dvo_chefclient
 
-Copyright (c) Trek Bicycle Corporation
+Copyright (c) example Corporation
 
 All rights reserved.

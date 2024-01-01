@@ -2,7 +2,7 @@
 # Cookbook Name:: cb_dvo_chefclient
 # Recipe:: logrotatewin
 #
-# Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
+# Copyright (c) 2017 example s, All Rights Reserved.
 
 include_recipe 'chef-vault'
 

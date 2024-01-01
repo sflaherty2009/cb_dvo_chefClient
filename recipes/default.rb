@@ -2,7 +2,7 @@
 # Cookbook Name:: cb_dvo_chefclient
 # Recipe:: default
 #
-# Copyright (c) 2017 Trek Bicycles, All Rights Reserved.
+# Copyright (c) 2017 example s, All Rights Reserved.
 
 case node['os']
 when 'linux'

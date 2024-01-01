@@ -63,4 +63,4 @@ Completes setup for client.rb to our specifications and sets the chef-client log
 
 ## License
 
-**Copyright:** 2018 Trek Bicycles
+**Copyright:** 2018 example s

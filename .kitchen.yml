@@ -85,7 +85,7 @@ platforms:
     client_key: "#{ENV['TEMP'] ? ENV['TEMP'] : '/tmp'}/kitchen/data/<%= ENV['USER'] %>.pem"
     driver:
       name: vagrant
-      box: trek/Windows2016
+      box: example/Windows2016
       box_url: https://aztrksaslh00public01.blob.core.windows.net/vagrant/windows/2016/windows2016min-virtualbox.box
       customize:
         createhd:
